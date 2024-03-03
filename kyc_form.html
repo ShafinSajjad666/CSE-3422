@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KYC Form</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+
+    <form action="process_kyc.php" method="post" enctype="multipart/form-data">
+        <h2>KYC Form</h2>
+
+        <!-- Applicant Information Section -->
+        <section>
+            <h3>Applicant Information</h3>
+
+            <label for="applicant_name">Applicant Name:</label>
+            <input type="text" id="applicant_name" name="applicant_name" required>
+
+            <label for="father_spouse_name">Father/Spouse Name:</label>
+            <input type="text" id="father_spouse_name" name="father_spouse_name" required>
+
+            <label>Gender:</label>
+            <label for="male">
+                <input type="radio" id="male" name="gender" value="male" required> Male
+            </label>
+            <label for="female">
+                <input type="radio" id="female" name="gender" value="female" required> Female
+            </label>
+
+            <label for="marital_status">Marital Status:</label>
+            <label for="single">
+                <input type="radio" id="single" name="marital_status" value="single" required> Single
+            </label>
+            <label for="married">
+                <input type="radio" id="married" name="marital_status" value="married" required> Married
+            </label>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="nationality">Nationality:</label>
+            <input type="text" id="nationality" name="nationality" required>
+
+            <label for="proof_of_id">Proof of ID (NID or Passport):</label>
+            <select id="proof_of_id" name="proof_of_id" required>
+                <option value="nid">National ID</option>
+                <option value="passport">Passport</option>
+            </select>
+        </section>
+
+        <!-- Address Details Section -->
+        <section>
+            <h3>Address Details</h3>
+
+            <label for="permanent_address">Permanent Address:</label>
+            <textarea id="permanent_address" name="permanent_address" rows="4" required></textarea>
+
+            <label for="present_address">Present Address:</label>
+            <textarea id="present_address" name="present_address" rows="4" required></textarea>
+
+            <label for="phone_number">Phone Number:</label>
+            <input type="tel" id="phone_number" name="phone_number" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </section>
+
+        <!-- Declaration Section -->
+        <section>
+            <h3>Declaration</h3>
+<!-- 
+            <label for="photo">Upload Photo:</label>
+            <input type="file" id="photo" name="photo" accept=".jpg, .jpeg, .png" required>
+
+            <label for="signature">Upload Signature:</label>
+            <input type="file" id="signature" name="signature" accept=".jpg, .jpeg, .png" required> -->
+
+            <label for="declaration">I hereby declare that the information provided above is true and accurate:</label>
+            <input type="checkbox" id="declaration" name="declaration" required>
+        </section>
+
+        <button type="submit">Submit KYC</button>
+    </form>
+
+</body>
+</html>
