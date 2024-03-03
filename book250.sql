@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2024 at 09:19 PM
+-- Generation Time: Mar 03, 2024 at 09:02 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,8 +18,29 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `transaction_db`
+-- Database: `book250`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bank`
+--
+
+CREATE TABLE `bank` (
+  `bank_id` int(11) NOT NULL,
+  `bank_name` varchar(255) DEFAULT NULL,
+  `account_type` varchar(50) DEFAULT NULL,
+  `branch_name` varchar(255) DEFAULT NULL,
+  `account_number` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `bank`
+--
+
+INSERT INTO `bank` (`bank_id`, `bank_name`, `account_type`, `branch_name`, `account_number`) VALUES
+(1, 'IBBL', 'Current', 'Gulshan', '409000611074');
 
 -- --------------------------------------------------------
 
@@ -293,6 +314,109 @@ INSERT INTO `book250` (`Account No`, `DATE`, `TRANSACTION DETAILS`, `CHQ.NO.`, `
 ('409000611074\'', '29-Jan-18', 'FDRL/INTERNAL FUND TRANSFE', '', '29-Jan-18', '', '500,000.00', '1,756,645.00', '.'),
 ('409000611074\'', '29-Jan-18', 'INDO GIBL Indiaforensic STL25011', '', '29-Jan-18', '135,050.00', '', '1,621,595.00', '.'),
 ('409000611074\'', '29-Jan-18', 'INDO GIBL Indiaforensic STL26011', '', '29-Jan-18', '31,300.00', '', '1,590,295.00', '.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `customer` (
+  `customer_id` int(11) NOT NULL,
+  `customer_name` varchar(255) DEFAULT NULL,
+  `kyc_id` int(11) DEFAULT NULL,
+  `account_number` varchar(20) DEFAULT NULL,
+  `bank_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`customer_id`, `customer_name`, `kyc_id`, `account_number`, `bank_id`) VALUES
+(1, 'Dina Sumaiya', 4, '409000611074', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kyc_form_data`
+--
+
+CREATE TABLE `kyc_form_data` (
+  `id` int(11) NOT NULL,
+  `applicant_name` varchar(100) NOT NULL,
+  `father_spouse_name` varchar(100) NOT NULL,
+  `gender` enum('male','female') NOT NULL,
+  `marital_status` enum('single','married') NOT NULL,
+  `dob` date NOT NULL,
+  `nationality` varchar(50) NOT NULL,
+  `proof_of_id` enum('nid','passport') NOT NULL,
+  `permanent_address` text NOT NULL,
+  `present_address` text NOT NULL,
+  `phone_number` varchar(20) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `photo_path` varchar(255) NOT NULL,
+  `signature_path` varchar(255) NOT NULL,
+  `declaration_agreed` tinyint(1) NOT NULL,
+  `submission_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kyc_form_data`
+--
+
+INSERT INTO `kyc_form_data` (`id`, `applicant_name`, `father_spouse_name`, `gender`, `marital_status`, `dob`, `nationality`, `proof_of_id`, `permanent_address`, `present_address`, `phone_number`, `email`, `photo_path`, `signature_path`, `declaration_agreed`, `submission_date`) VALUES
+(1, 'Sajjad Ullah', 'Salim Ullah', 'male', 'married', '2000-04-10', 'Myanmar', 'nid', 'United City, Madani Ave, Dhaka', 'United City, Madani Ave, Dhaka', '+8801589741274', 'sullah201250@bscse.uiu.ac.bd', 'uploads/IMG_7703.JPG', 'uploads/IMG_7699.JPG', 1, '2024-03-03 06:19:58'),
+(2, 'Kavin', 'Warden', 'male', 'single', '2000-10-04', 'Australian', 'nid', 'woieqwjikj', 'hiqwednqidph', '+8801589741274', 'kavingg@gmail.com', 'uploads/', 'uploads/', 1, '2024-03-03 06:42:03'),
+(3, 'Kavin', 'Warden', 'male', 'single', '2000-10-04', 'Australian', 'nid', 'woieqwjikj', 'hiqwednqidph', '+8801589741274', 'kavingg@gmail.com', '', '', 1, '2024-03-03 07:08:26'),
+(4, 'Sumaiya Dina', 'Din the day', 'female', 'single', '1999-12-14', 'Bangladeshi', 'passport', 'United City, Madani Ave, Dhaka', 'United City, Madani Ave, Dhaka', '123654789', 'dina@uiu.ac.com', '', '', 1, '2024-03-03 07:39:14');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `bank`
+--
+ALTER TABLE `bank`
+  ADD PRIMARY KEY (`bank_id`),
+  ADD UNIQUE KEY `account_number` (`account_number`),
+  ADD UNIQUE KEY `account_number_2` (`account_number`);
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`customer_id`),
+  ADD KEY `kyc_id` (`kyc_id`),
+  ADD KEY `bank_id` (`bank_id`);
+
+--
+-- Indexes for table `kyc_form_data`
+--
+ALTER TABLE `kyc_form_data`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `kyc_form_data`
+--
+ALTER TABLE `kyc_form_data`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `customer`
+--
+ALTER TABLE `customer`
+  ADD CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`kyc_id`) REFERENCES `kyc_form_data` (`id`),
+  ADD CONSTRAINT `customer_ibfk_2` FOREIGN KEY (`bank_id`) REFERENCES `bank` (`bank_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
