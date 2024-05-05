@@ -1,0 +1,14 @@
+site_name: Secure Web Application for Transaction Data Management
+
+
+theme:
+  name: material
+ 
+
+nav:
+  - Home: index.md
+  - Dasboard: Dashboard.md
+  - Data Analysis: data_analysis.md
+  - Data ManagementL: data_management.md
+  - Reporting: reporting.md
+  - Setting: setting.md
